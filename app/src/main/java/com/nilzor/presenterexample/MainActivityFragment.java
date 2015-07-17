@@ -34,6 +34,13 @@ public class MainActivityFragment extends Fragment {
                 mViewModel.logInClicked();
             }
         });
+        // Workaround for missing impl
+        mBinding.returningUserRb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                mViewModel.updateDependentViews(isChecked);
+            }
+        });
     }
 
     @Override

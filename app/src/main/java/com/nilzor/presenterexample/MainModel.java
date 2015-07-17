@@ -42,7 +42,11 @@ public class MainModel {
     }
 
     public void updateDependentViews() {
-        if (isExistingUserChecked.get()) {
+        updateDependentViews(isExistingUserChecked.get());
+    }
+
+    public void updateDependentViews(boolean isExistingUserChecked) {
+        if (isExistingUserChecked) {
             emailBlockVisibility.set(View.GONE);
             loginOrCreateButtonText.set(mResources.getString(R.string.log_in));
         }
