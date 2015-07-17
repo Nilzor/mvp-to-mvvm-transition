@@ -8,18 +8,13 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.RadioButton;
 import android.widget.TextView;
-
+import android.widget.Toast;
 import com.hannesdorfmann.mosby.mvp.MvpFragment;
 import com.hannesdorfmann.mosby.mvp.MvpView;
-
 import butterknife.InjectView;
+import butterknife.OnClick;
 
-/**
- * A placeholder fragment containing a simple view.
- */
 public class MainActivityFragment extends MvpFragment<MainActivityFragment, MainPresenter> implements MvpView {
-
-
     @InjectView(R.id.username)
     TextView mUsername;
 
@@ -37,6 +32,9 @@ public class MainActivityFragment extends MvpFragment<MainActivityFragment, Main
 
     @InjectView(R.id.email_block)
     ViewGroup mEmailBlock;
+
+    @InjectView(R.id.loggedInUserCount)
+    TextView mLoggedInUserCount;
 
     public MainActivityFragment() {
     }
@@ -78,6 +76,7 @@ public class MainActivityFragment extends MvpFragment<MainActivityFragment, Main
         updateDependentViews();
     }
 
+    /** Shows/hides email field and sets correct text of login button depending on state of radio buttons */
     public void updateDependentViews() {
         if (mReturningUserRb.isChecked()) {
             mEmailBlock.setVisibility(View.GONE);
@@ -87,6 +86,18 @@ public class MainActivityFragment extends MvpFragment<MainActivityFragment, Main
             mEmailBlock.setVisibility(View.VISIBLE);
             mLoginOrCreateButton.setText(R.string.create_user);
         }
+    }
 
+    public void setNumberOfLoggedIn(int numberOfLoggedIn) {
+        mLoggedInUserCount.setText(""  + numberOfLoggedIn);
+    }
+
+    @OnClick(R.id.loginOrCreateButton)
+    public void loginOrCreate() {
+        if (mNewUserRb.isChecked()) {
+            Toast.makeText(getActivity(), "Please enter a valid email address", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(getActivity(), "Invalid username or password", Toast.LENGTH_SHORT).show();
+        }
     }
 }
