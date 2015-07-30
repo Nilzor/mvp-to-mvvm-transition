@@ -2,4 +2,8 @@
     <string name="app_name">PresenterExample</string>
     <string name="create_user">Create user</string>
     <string name="log_in">Log in</string>
+    <string name="title_activity_second">SecondActivity</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
 </resources>

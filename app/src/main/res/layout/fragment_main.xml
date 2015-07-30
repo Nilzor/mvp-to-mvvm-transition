@@ -24,7 +24,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="false"
-            android:layout_toLeftOf="@+id/loggedInUserCount"/>
+            android:layout_toLeftOf="@+id/loggedInUserCount"
+            android:id="@+id/textView2"/>
 
         <RadioGroup
             android:layout_marginTop="40dp"
@@ -127,5 +128,15 @@
             android:id="@+id/loginOrCreateButton"
             android:layout_below="@+id/email_block"
             android:layout_centerHorizontal="true"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Skip"
+            android:id="@+id/button"
+            android:layout_below="@+id/loginOrCreateButton"
+            android:layout_centerHorizontal="true"
+            android:onClick="skipLogin"
+            android:nestedScrollingEnabled="false"/>
     </RelativeLayout>
 </layout>
