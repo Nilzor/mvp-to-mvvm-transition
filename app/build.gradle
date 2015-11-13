@@ -3,19 +3,18 @@ apply plugin: 'com.android.databinding'
 
 repositories {
     maven {
-        // For icepick
-        url 'https://clojars.org/repo/'
+        url 'https://clojars.org/repo/' // For icepick
     }
 }
 
 android {
-    compileSdkVersion 'android-MNC'
-    buildToolsVersion "22.0.1"
+    compileSdkVersion 23
+    buildToolsVersion "23.0.1"
 
     defaultConfig {
         applicationId "com.nilzor.presenterexample"
         minSdkVersion 17
-        targetSdkVersion 22
+        targetSdkVersion 23
         versionCode 1
         versionName "1.0"
     }
@@ -35,13 +34,16 @@ android {
             }
         }
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
+    }
 }
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:appcompat-v7:22.2.0'
+    compile 'com.android.support:appcompat-v7:23.1.0'
     compile 'com.squareup:otto:1.3.8'
     compile 'com.hannesdorfmann.mosby:core:+'
     compile 'com.hannesdorfmann.mosby:mvp:+'
-
 }
