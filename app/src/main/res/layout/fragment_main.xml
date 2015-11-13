@@ -71,6 +71,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/username"
+                android:text="@{data.username}"
                 android:minWidth="200dp"/>
         </LinearLayout>
 
@@ -93,6 +94,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
+                android:text="@{data.password}"
                 android:ems="10"
                 android:id="@+id/password"/>
 

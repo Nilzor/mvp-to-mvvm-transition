@@ -22,6 +22,8 @@ public class MainModelTest {
         Resources resources = mock(Resources.class);
         MainModel model = new MainModel(toast, resources);
         model.isExistingUserChecked.set(true);
+        model.username.set("someGuy2006");
+        model.password.set("definitely not the correct password");
         model.logInClicked(null);
         verify(toast).showShortToast(mStringCaptor.capture());
         assertEquals("Invalid username or password", mStringCaptor.getValue());

@@ -12,6 +12,8 @@ public class MainModel {
     public ObservableField<Boolean> isExistingUserChecked = new ObservableField<>();
     public ObservableField<Integer> emailBlockVisibility = new ObservableField<>();
     public ObservableField<String> loginOrCreateButtonText = new ObservableField<>();
+    public ObservableField<String> username = new ObservableField<>();
+    public ObservableField<String> password = new ObservableField<>();
     private boolean mIsLoaded;
     private ToastPresenter mToastPresenter;
     private Resources mResources;
