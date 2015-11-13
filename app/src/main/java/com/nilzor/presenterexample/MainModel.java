@@ -56,6 +56,10 @@ public class MainModel {
         }
     }
 
+    public void updateDependentViews(View view, boolean isExistingUserCheecked) {
+        updateDependentViews(isExistingUserCheecked);
+    }
+
     public void loadAsync() {
         new AsyncTask<Void, Void, Void>() {
             @Override
@@ -69,7 +73,7 @@ public class MainModel {
         }.execute((Void) null);
     }
 
-    public void logInClicked() {
+    public void logInClicked(View view) {
         // Illustrating the need for calling back to the view though testable interfaces.
         if (isExistingUserChecked.get()) {
             mView.showShortToast("Invalid username or password");

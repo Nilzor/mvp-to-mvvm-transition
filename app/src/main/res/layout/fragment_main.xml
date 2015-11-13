@@ -40,6 +40,7 @@
                 android:layout_height="wrap_content"
                 android:text="Returning user"
                 android:checked="@{data.isExistingUserChecked}"
+                android:onCheckedChangeListener="@{data.updateDependentViews}"
                 android:id="@+id/returningUserRb"/>
 
             <RadioButton
@@ -126,6 +127,7 @@
             android:text="@{data.loginOrCreateButtonText}"
             android:id="@+id/loginOrCreateButton"
             android:layout_below="@+id/email_block"
-            android:layout_centerHorizontal="true"/>
+            android:layout_centerHorizontal="true"
+            android:onClick="@{data.logInClicked}"/>
     </RelativeLayout>
 </layout>

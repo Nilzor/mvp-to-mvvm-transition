@@ -22,13 +22,7 @@ public class MainActivityFragment extends Fragment {
         mBinding = FragmentMainBinding.bind(view);
         mViewModel = new MainModel(this, getResources());
         mBinding.setData(mViewModel);
-        attachButtonListener();
         return view;
-    }
-
-    private void attachButtonListener() {
-        mBinding.loginOrCreateButton.setOnClickListener(v -> mViewModel.logInClicked());
-        mBinding.returningUserRb.setOnCheckedChangeListener((v, isChecked) -> mViewModel.updateDependentViews(isChecked));
     }
 
     @Override
