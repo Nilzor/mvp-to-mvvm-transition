@@ -13,11 +13,11 @@ public class MainModel {
     public ObservableField<Integer> emailBlockVisibility = new ObservableField<>();
     public ObservableField<String> loginOrCreateButtonText = new ObservableField<>();
     private boolean mIsLoaded;
-    private MainActivityFragment mView;
+    private ToastPresenter mToastPresenter;
     private Resources mResources;
 
-    public MainModel(MainActivityFragment view, Resources resources) {
-        mView = view;
+    public MainModel(ToastPresenter toastPresenter, Resources resources) {
+        mToastPresenter = toastPresenter;
         mResources = resources; // You might want to abstract this for testability
         setInitialState();
         updateDependentViews();
@@ -76,10 +76,10 @@ public class MainModel {
     public void logInClicked(View view) {
         // Illustrating the need for calling back to the view though testable interfaces.
         if (isExistingUserChecked.get()) {
-            mView.showShortToast("Invalid username or password");
+            mToastPresenter.showShortToast("Invalid username or password");
         }
         else {
-            mView.showShortToast("Please enter a valid email address");
+            mToastPresenter.showShortToast("Please enter a valid email address");
         }
     }
 }

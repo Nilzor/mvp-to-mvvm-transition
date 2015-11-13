@@ -20,7 +20,8 @@ public class MainActivityFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_main, container, false);
         mBinding = FragmentMainBinding.bind(view);
-        mViewModel = new MainModel(this, getResources());
+        ToastPresenter toastPresenter = new ToastPresenter(getActivity().getApplicationContext());
+        mViewModel = new MainModel(toastPresenter, getResources());
         mBinding.setData(mViewModel);
         return view;
     }
@@ -34,9 +35,5 @@ public class MainActivityFragment extends Fragment {
         if (!mViewModel.isLoaded()) {
             mViewModel.loadAsync();
         }
-    }
-
-    public void showShortToast(String text) {
-        Toast.makeText(getActivity(), text, Toast.LENGTH_SHORT).show();
     }
 }
