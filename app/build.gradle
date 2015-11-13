@@ -49,4 +49,6 @@ dependencies {
     compile 'com.hannesdorfmann.mosby:core:+'
     compile 'com.hannesdorfmann.mosby:mvp:+'
     retrolambdaConfig 'net.orfjackal.retrolambda:retrolambda:2.0.4'
+    testCompile 'junit:junit:4.12'
+    testCompile 'org.mockito:mockito-core:1.+'
 }
