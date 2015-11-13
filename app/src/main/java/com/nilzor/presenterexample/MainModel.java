@@ -1,8 +1,10 @@
 package com.nilzor.presenterexample;
 
 import android.content.res.Resources;
+import android.databinding.Observable;
 import android.databinding.ObservableField;
 import android.os.AsyncTask;
+import android.util.Log;
 import android.view.View;
 
 import java.util.Random;
@@ -39,6 +41,12 @@ public class MainModel {
             @Override
             public void onPropertyChanged(android.databinding.Observable sender, int propertyId) {
                 updateDependentViews();
+            }
+        });
+        username.addOnPropertyChangedCallback(new Observable.OnPropertyChangedCallback() {
+            @Override
+            public void onPropertyChanged(Observable observable, int i) {
+                Log.d("Model", "Username now: " + username.get());
             }
         });
     }
