@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CompoundButton;
 import android.widget.Toast;
 
 import com.nilzor.presenterexample.databinding.FragmentMainBinding;
@@ -28,19 +27,8 @@ public class MainActivityFragment extends Fragment {
     }
 
     private void attachButtonListener() {
-        mBinding.loginOrCreateButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mViewModel.logInClicked();
-            }
-        });
-        // Workaround for missing impl
-        mBinding.returningUserRb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                mViewModel.updateDependentViews(isChecked);
-            }
-        });
+        mBinding.loginOrCreateButton.setOnClickListener(v -> mViewModel.logInClicked());
+        mBinding.returningUserRb.setOnCheckedChangeListener((v, isChecked) -> mViewModel.updateDependentViews(isChecked));
     }
 
     @Override
