@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import com.nilzor.presenterexample.R;
 import com.nilzor.presenterexample.databinding.FragmentLoginBinding;
 import com.nilzor.presenterexample.viewmodels.LoginFragmentViewModel;
+import com.nilzor.presenterexample.wrappers.AppNavigator;
 import com.nilzor.presenterexample.wrappers.ToastPresenter;
 
 public class LoginFragment extends Fragment {
@@ -23,7 +24,8 @@ public class LoginFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_login, container, false);
         mBinding = FragmentLoginBinding.bind(view);
         ToastPresenter toastPresenter = new ToastPresenter(getActivity().getApplicationContext());
-        mViewModel = new LoginFragmentViewModel(toastPresenter, getResources());
+        AppNavigator navigator = new AppNavigator(getActivity());
+        mViewModel = new LoginFragmentViewModel(navigator, toastPresenter, getResources());
         mBinding.setData(mViewModel);
         attachListeners();
         return view;

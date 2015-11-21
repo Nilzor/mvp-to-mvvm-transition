@@ -2,6 +2,7 @@ package com.nilzor.presenterexample.viewmodels;
 
 import android.content.res.Resources;
 
+import com.nilzor.presenterexample.wrappers.AppNavigator;
 import com.nilzor.presenterexample.wrappers.ToastPresenter;
 
 import org.junit.Test;
@@ -44,7 +45,7 @@ public class LoginFragmentViewModelTest {
     public void loginClicked_existingUserWrongCredentials_errorToastShown() {
         ToastPresenter toast = mock(ToastPresenter.class);
         Resources resources = mock(Resources.class);
-        LoginFragmentViewModel model = new LoginFragmentViewModel(toast, resources);
+        LoginFragmentViewModel model = new LoginFragmentViewModel(mock(AppNavigator.class), toast, resources);
         model.isExistingUserChecked.set(true);
         model.username.set("someGuy2006");
         model.password.set("wrong");
@@ -56,7 +57,7 @@ public class LoginFragmentViewModelTest {
     private LoginFragmentViewModel createBlankViewModel() {
         ToastPresenter toast = mock(ToastPresenter.class);
         Resources resources = mock(Resources.class);
-        LoginFragmentViewModel model = new LoginFragmentViewModel(toast, resources);
+        LoginFragmentViewModel model = new LoginFragmentViewModel(mock(AppNavigator.class), toast, resources);
         return model;
     }
 }

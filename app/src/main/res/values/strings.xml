@@ -2,4 +2,5 @@
     <string name="app_name">PresenterExample</string>
     <string name="create_user">Create user</string>
     <string name="log_in">Log in</string>
+    <string name="title_activity_main">MainActivity</string>
 </resources>

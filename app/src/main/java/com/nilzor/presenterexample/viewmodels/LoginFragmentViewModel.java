@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import android.view.View;
 
 import com.nilzor.presenterexample.R;
+import com.nilzor.presenterexample.wrappers.AppNavigator;
 import com.nilzor.presenterexample.wrappers.ToastPresenter;
 
 import java.util.Random;
@@ -19,10 +20,12 @@ public class LoginFragmentViewModel {
     public ObservableField<String> password = new ObservableField<>();
     public ObservableField<String> passwordError = new ObservableField<>();
     private boolean mIsLoaded;
+    private AppNavigator mAppNavigator;
     private ToastPresenter mToastPresenter;
     private Resources mResources;
 
-    public LoginFragmentViewModel(ToastPresenter toastPresenter, Resources resources) {
+    public LoginFragmentViewModel(AppNavigator appNavigator, ToastPresenter toastPresenter, Resources resources) {
+        mAppNavigator = appNavigator;
         mToastPresenter = toastPresenter;
         mResources = resources; // You might want to abstract this for testability
         setInitialState();
@@ -75,7 +78,7 @@ public class LoginFragmentViewModel {
     public void logInClicked() {
         boolean isValid = validateInput();
         if (isValid) {
-            attemptLogin();
+            attemptLoginOrCreate();
         }
     }
 
@@ -92,10 +95,17 @@ public class LoginFragmentViewModel {
         return passwordError.get() == null;
     }
 
-    public void attemptLogin() {
+    public void attemptLoginOrCreate() {
         // Illustrating the need for calling back to the view though testable interfaces.
-        if (!password.get().contains("a")) {
-            mToastPresenter.showShortToast("Invalid username or password");
+        boolean ok = true;
+        if (isExistingUserChecked.get()) {
+            if (!password.get().contains("a")) {
+                mToastPresenter.showShortToast("Invalid username or password");
+                ok = false;
+            }
+        }
+        if (ok) {
+            mAppNavigator.gotoMainScreen();
         }
     };
 
