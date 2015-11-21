@@ -8,9 +8,9 @@ import android.view.ViewGroup;
 
 import com.nilzor.presenterexample.R;
 import com.nilzor.presenterexample.databinding.FragmentLoginBinding;
-import com.nilzor.presenterexample.viewmodels.LoginFragmentViewModel;
 import com.nilzor.presenterexample.helpers.AppNavigator;
 import com.nilzor.presenterexample.helpers.ToastPresenter;
+import com.nilzor.presenterexample.viewmodels.LoginFragmentViewModel;
 
 public class LoginFragment extends Fragment {
     private FragmentLoginBinding mBinding;
@@ -33,12 +33,6 @@ public class LoginFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         ensureModelDataIsLodaded();
-    }
-
-    public void loginClicked() {
-        mViewModel.password.set(mBinding.password.getText().toString());
-        mViewModel.username.set(mBinding.username.getText().toString());
-        mViewModel.logInClicked();
     }
 
     private void ensureModelDataIsLodaded() {

@@ -1,12 +1,15 @@
 package com.nilzor.presenterexample.viewmodels;
 
 import android.content.res.Resources;
+import android.database.Observable;
+import android.databinding.ObservableBoolean;
 import android.databinding.ObservableField;
+import android.databinding.ObservableInt;
 import android.os.AsyncTask;
-import android.text.TextUtils;
 import android.view.View;
 
 import com.nilzor.presenterexample.R;
+import com.nilzor.presenterexample.databinding.ObservableString;
 import com.nilzor.presenterexample.helpers.AppNavigator;
 import com.nilzor.presenterexample.helpers.ToastPresenter;
 
@@ -14,12 +17,12 @@ import java.util.Random;
 
 public class LoginFragmentViewModel {
     public ObservableField<String> numberOfUsersLoggedIn = new ObservableField<>();
-    public ObservableField<Boolean> isExistingUserChecked = new ObservableField<>();
-    public ObservableField<Integer> emailBlockVisibility = new ObservableField<>();
-    public ObservableField<String> loginOrCreateButtonText = new ObservableField<>();
-    public ObservableField<String> username = new ObservableField<>();
-    public ObservableField<String> password = new ObservableField<>();
-    public ObservableField<String> passwordError = new ObservableField<>();
+    public ObservableBoolean isExistingUserChecked = new ObservableBoolean();
+    public ObservableInt emailBlockVisibility = new ObservableInt();
+    public ObservableString loginOrCreateButtonText = new ObservableString();
+    public ObservableString username = new ObservableString("");
+    public ObservableString password = new ObservableString("");
+    public ObservableField<String> passwordError = new ObservableField<>(); // Todo: Fix ObservableString to work here
     private boolean mIsLoaded;
     private AppNavigator mAppNavigator;
     private ToastPresenter mToastPresenter;
@@ -81,7 +84,7 @@ public class LoginFragmentViewModel {
         }.execute((Void) null);
     }
 
-    public void logInClicked() {
+    public void logInClicked(View view) {
         boolean isValid = validateInput();
         if (isValid) {
             attemptLoginOrCreate();
@@ -91,14 +94,16 @@ public class LoginFragmentViewModel {
     /** Validate input data */
     public boolean validateInput() {
         resetErrors();
+        String newPasswordError = null;
         if (!isExistingUserChecked.get()) {
             if (password.get().length() < 8) {
-                passwordError.set("Password must be at least 8 characters long");
+                newPasswordError = "Password must be at least 8 characters long";
             }
             else {
             }
         }
-        return passwordError.get() == null;
+        passwordError.set(newPasswordError);
+        return newPasswordError == null;
     }
 
     public void attemptLoginOrCreate() {
