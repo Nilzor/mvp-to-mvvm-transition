@@ -40,7 +40,6 @@
                 android:layout_height="wrap_content"
                 android:text="Returning user"
                 android:checked="@{data.isExistingUserChecked}"
-                android:onCheckedChangeListener="@{data.updateDependentViews}"
                 android:id="@+id/returningUserRb"/>
 
             <RadioButton

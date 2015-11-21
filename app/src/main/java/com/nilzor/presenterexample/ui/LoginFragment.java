@@ -25,6 +25,7 @@ public class LoginFragment extends Fragment {
         ToastPresenter toastPresenter = new ToastPresenter(getActivity().getApplicationContext());
         mViewModel = new LoginFragmentViewModel(toastPresenter, getResources());
         mBinding.setData(mViewModel);
+        attachListeners();
         return view;
     }
 
@@ -33,10 +34,22 @@ public class LoginFragment extends Fragment {
         ensureModelDataIsLodaded();
     }
 
+    private void attachListeners() {
+        mBinding.existingOrNewUser.setOnCheckedChangeListener((group, checkedId) -> {
+            uiToModel();
+            mViewModel.updateDependentViews();
+        });
+    }
+
     public void loginClicked() {
+        uiToModel();
+        mViewModel.logInClicked();
+    }
+
+    private void uiToModel() {
+        mViewModel.isExistingUserChecked.set(mBinding.returningUserRb.isChecked());
         mViewModel.password.set(mBinding.password.getText().toString());
         mViewModel.username.set(mBinding.username.getText().toString());
-        mViewModel.logInClicked();
     }
 
     private void ensureModelDataIsLodaded() {
