@@ -6,7 +6,8 @@ import android.os.AsyncTask;
 import android.view.View;
 
 import com.nilzor.presenterexample.R;
-import com.nilzor.presenterexample.wrappers.ToastPresenter;
+import com.nilzor.presenterexample.helpers.AppNavigator;
+import com.nilzor.presenterexample.helpers.ToastPresenter;
 
 import java.util.Random;
 
@@ -17,11 +18,14 @@ public class LoginFragmentViewModel {
     public ObservableField<String> loginOrCreateButtonText = new ObservableField<>();
     public ObservableField<String> username = new ObservableField<>();
     public ObservableField<String> password = new ObservableField<>();
+    public ObservableField<String> passwordError = new ObservableField<>();
     private boolean mIsLoaded;
+    private AppNavigator mAppNavigator;
     private ToastPresenter mToastPresenter;
     private Resources mResources;
 
-    public LoginFragmentViewModel(ToastPresenter toastPresenter, Resources resources) {
+    public LoginFragmentViewModel(AppNavigator appNavigator, ToastPresenter toastPresenter, Resources resources) {
+        mAppNavigator = appNavigator;
         mToastPresenter = toastPresenter;
         mResources = resources; // You might want to abstract this for testability
         setInitialState();
@@ -47,11 +51,8 @@ public class LoginFragmentViewModel {
     }
 
     public void updateDependentViews() {
-        updateDependentViews(isExistingUserChecked.get());
-    }
-
-    public void updateDependentViews(boolean isExistingUserChecked) {
-        if (isExistingUserChecked) {
+        resetErrors();
+        if (isExistingUserChecked.get()) {
             emailBlockVisibility.set(View.GONE);
             loginOrCreateButtonText.set(mResources.getString(R.string.log_in));
         }
@@ -59,10 +60,6 @@ public class LoginFragmentViewModel {
             emailBlockVisibility.set(View.VISIBLE);
             loginOrCreateButtonText.set(mResources.getString(R.string.create_user));
         }
-    }
-
-    public void updateDependentViews(View view, boolean isExistingUserCheecked) {
-        updateDependentViews(isExistingUserCheecked);
     }
 
     public void loadAsync() {
@@ -78,13 +75,41 @@ public class LoginFragmentViewModel {
         }.execute((Void) null);
     }
 
-    public void logInClicked(View view) {
+    public void logInClicked() {
+        boolean isValid = validateInput();
+        if (isValid) {
+            attemptLoginOrCreate();
+        }
+    }
+
+    /** Validate input data */
+    public boolean validateInput() {
+        resetErrors();
+        if (!isExistingUserChecked.get()) {
+            if (password.get().length() < 8) {
+                passwordError.set("Password must be at least 8 characters long");
+            }
+            else {
+            }
+        }
+        return passwordError.get() == null;
+    }
+
+    public void attemptLoginOrCreate() {
         // Illustrating the need for calling back to the view though testable interfaces.
+        boolean ok = true;
         if (isExistingUserChecked.get()) {
-            mToastPresenter.showShortToast("Invalid username or password");
+            if (!password.get().contains("a")) {
+                mToastPresenter.showShortToast("Invalid username or password");
+                ok = false;
+            }
         }
-        else {
-            mToastPresenter.showShortToast("Please enter a valid email address");
+        if (ok) {
+            mAppNavigator.gotoMainScreen();
         }
+    };
+
+    private void resetErrors() {
+        passwordError.set(null);
     }
 }
