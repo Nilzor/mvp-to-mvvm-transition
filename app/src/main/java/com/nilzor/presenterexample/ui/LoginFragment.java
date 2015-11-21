@@ -33,6 +33,12 @@ public class LoginFragment extends Fragment {
         ensureModelDataIsLodaded();
     }
 
+    public void loginClicked() {
+        mViewModel.password.set(mBinding.password.getText().toString());
+        mViewModel.username.set(mBinding.username.getText().toString());
+        mViewModel.logInClicked();
+    }
+
     private void ensureModelDataIsLodaded() {
         if (!mViewModel.isLoaded()) {
             mViewModel.loadAsync();
