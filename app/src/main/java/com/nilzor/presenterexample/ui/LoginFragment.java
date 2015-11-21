@@ -9,8 +9,8 @@ import android.view.ViewGroup;
 import com.nilzor.presenterexample.R;
 import com.nilzor.presenterexample.databinding.FragmentLoginBinding;
 import com.nilzor.presenterexample.viewmodels.LoginFragmentViewModel;
-import com.nilzor.presenterexample.wrappers.AppNavigator;
-import com.nilzor.presenterexample.wrappers.ToastPresenter;
+import com.nilzor.presenterexample.helpers.AppNavigator;
+import com.nilzor.presenterexample.helpers.ToastPresenter;
 
 public class LoginFragment extends Fragment {
     private FragmentLoginBinding mBinding;

@@ -2,8 +2,8 @@ package com.nilzor.presenterexample.viewmodels;
 
 import android.content.res.Resources;
 
-import com.nilzor.presenterexample.wrappers.AppNavigator;
-import com.nilzor.presenterexample.wrappers.ToastPresenter;
+import com.nilzor.presenterexample.helpers.AppNavigator;
+import com.nilzor.presenterexample.helpers.ToastPresenter;
 
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;

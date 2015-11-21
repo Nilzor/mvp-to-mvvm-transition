@@ -1,4 +1,4 @@
-package com.nilzor.presenterexample.wrappers;
+package com.nilzor.presenterexample.helpers;
 
 import android.text.Editable;
 import android.text.TextWatcher;

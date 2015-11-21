@@ -6,8 +6,8 @@ import android.os.AsyncTask;
 import android.view.View;
 
 import com.nilzor.presenterexample.R;
-import com.nilzor.presenterexample.wrappers.AppNavigator;
-import com.nilzor.presenterexample.wrappers.ToastPresenter;
+import com.nilzor.presenterexample.helpers.AppNavigator;
+import com.nilzor.presenterexample.helpers.ToastPresenter;
 
 import java.util.Random;
 
