@@ -1,5 +1,4 @@
 apply plugin: 'com.android.application'
-apply plugin: 'com.android.databinding'
 apply plugin: 'me.tatarka.retrolambda'
 
 
@@ -13,6 +12,10 @@ android {
     compileSdkVersion 23
     buildToolsVersion "23.0.1"
 
+    dataBinding {
+        enabled true
+    }
+
     defaultConfig {
         applicationId "com.nilzor.presenterexample"
         minSdkVersion 17
@@ -24,16 +27,6 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-    }
-    // based on http://stackoverflow.com/a/27372806/115145
-    applicationVariants.all { variant ->
-        variant.outputs.each { output ->
-            output.processManifest.doLast {
-                def manifestOutFile = output.processManifest.manifestOutputFile
-                def newFileContents = manifestOutFile.getText('UTF-8').replace("MNC", "17").replace("android-MNC", "17")
-                manifestOutFile.write(newFileContents, 'UTF-8')
-            }
         }
     }
     compileOptions {
