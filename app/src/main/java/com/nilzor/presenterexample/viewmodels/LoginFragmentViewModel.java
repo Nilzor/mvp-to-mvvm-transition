@@ -3,6 +3,7 @@ package com.nilzor.presenterexample.viewmodels;
 import android.content.res.Resources;
 import android.databinding.ObservableField;
 import android.os.AsyncTask;
+import android.text.TextUtils;
 import android.view.View;
 
 import com.nilzor.presenterexample.R;
@@ -60,6 +61,11 @@ public class LoginFragmentViewModel {
             emailBlockVisibility.set(View.VISIBLE);
             loginOrCreateButtonText.set(mResources.getString(R.string.create_user));
         }
+    }
+
+    public void updateDependentViews(View view, boolean newState) {
+        isExistingUserChecked.set(newState);
+        updateDependentViews();
     }
 
     public void loadAsync() {
