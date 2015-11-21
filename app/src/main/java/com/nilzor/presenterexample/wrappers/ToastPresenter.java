@@ -1,4 +1,4 @@
-package com.nilzor.presenterexample;
+package com.nilzor.presenterexample.wrappers;
 
 import android.content.Context;
 import android.widget.Toast;

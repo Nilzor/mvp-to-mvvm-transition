@@ -1,4 +1,4 @@
-package com.nilzor.presenterexample;
+package com.nilzor.presenterexample.viewmodels;
 
 import android.content.res.Resources;
 import android.databinding.Observable;
@@ -7,9 +7,12 @@ import android.os.AsyncTask;
 import android.util.Log;
 import android.view.View;
 
+import com.nilzor.presenterexample.R;
+import com.nilzor.presenterexample.wrappers.ToastPresenter;
+
 import java.util.Random;
 
-public class MainModel {
+public class LoginFragmentViewModel {
     public ObservableField<String> numberOfUsersLoggedIn = new ObservableField<>();
     public ObservableField<Boolean> isExistingUserChecked = new ObservableField<>();
     public ObservableField<Integer> emailBlockVisibility = new ObservableField<>();
@@ -20,7 +23,7 @@ public class MainModel {
     private ToastPresenter mToastPresenter;
     private Resources mResources;
 
-    public MainModel(ToastPresenter toastPresenter, Resources resources) {
+    public LoginFragmentViewModel(ToastPresenter toastPresenter, Resources resources) {
         mToastPresenter = toastPresenter;
         mResources = resources; // You might want to abstract this for testability
         setInitialState();

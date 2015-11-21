@@ -2,6 +2,9 @@ package com.nilzor.presenterexample;
 
 import android.content.res.Resources;
 
+import com.nilzor.presenterexample.viewmodels.LoginFragmentViewModel;
+import com.nilzor.presenterexample.wrappers.ToastPresenter;
+
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
@@ -20,7 +23,7 @@ public class MainModelTest {
     public void loginClicked_existingUserWrongCredentials_errorToastShown() {
         ToastPresenter toast = mock(ToastPresenter.class);
         Resources resources = mock(Resources.class);
-        MainModel model = new MainModel(toast, resources);
+        LoginFragmentViewModel model = new LoginFragmentViewModel(toast, resources);
         model.isExistingUserChecked.set(true);
         model.username.set("someGuy2006");
         model.password.set("definitely not the correct password");

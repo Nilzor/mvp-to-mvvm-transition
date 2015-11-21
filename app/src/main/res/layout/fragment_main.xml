@@ -1,7 +1,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
     <data>
-        <variable name="data" type="com.nilzor.presenterexample.MainModel"/>
+        <variable name="data" type="com.nilzor.presenterexample.viewmodels.LoginFragmentViewModel"/>
     </data>
     <RelativeLayout
         android:layout_width="match_parent"
@@ -10,7 +10,7 @@
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingTop="@dimen/activity_vertical_margin"
         android:paddingBottom="@dimen/activity_vertical_margin"
-        tools:context=".MainActivityFragment">
+        tools:context=".ui.LoginFragment">
 
         <TextView
             android:text="@{data.numberOfUsersLoggedIn}"
