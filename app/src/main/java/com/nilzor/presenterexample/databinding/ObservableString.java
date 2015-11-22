@@ -58,4 +58,9 @@ public class ObservableString extends BaseObservable implements Serializable {
             notifyChange();
         }
     }
+
+    /** Sets the stored value without notifying of change */
+    public void setSilently(String value) {
+        mValue = value;
+    }
 }

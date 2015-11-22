@@ -41,7 +41,7 @@
                 android:layout_height="wrap_content"
                 android:text="Returning user"
                 android:checked="@{data.isExistingUserChecked}"
-                android:onCheckedChangeListener="@{data.updateDependentViews}"
+                android:onCheckedChangeListener="@{data.onExistingOrNewUserChanged}"
                 android:id="@+id/returningUserRb"/>
 
             <RadioButton
@@ -73,7 +73,8 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/username"
                 android:text="@{data.username}"
-                android:minWidth="200dp"/>
+                android:minWidth="200dp"
+                android:afterTextChanged="@{data.onUsernameChanged}"/>
         </LinearLayout>
 
         <LinearLayout
@@ -98,7 +99,8 @@
                 android:error="@{data.passwordError}"
                 android:ems="10"
                 android:id="@+id/password"
-                android:text="@{data.password}"/>
+                android:text="@{data.password}"
+                android:afterTextChanged="@{data.onPasswordChanged}"/>
 
         </LinearLayout>
 
@@ -120,9 +122,11 @@
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="@{data.email}"
                 android:inputType="textEmailAddress"
                 android:ems="10"
-                android:id="@+id/email"/>
+                android:id="@+id/email"
+                android:afterTextChanged="@{data.onEmailChanged}"/>
         </LinearLayout>
 
         <Button

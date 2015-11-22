@@ -1,6 +1,7 @@
 package com.nilzor.presenterexample.databinding;
 
 import android.databinding.BindingAdapter;
+import android.databinding.BindingConversion;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.EditText;
@@ -9,7 +10,13 @@ import com.nilzor.presenterexample.R;
 
 @SuppressWarnings("unused")
 public class TwoWayBindings {
-    @BindingAdapter({"android:text"})
+
+    @BindingConversion
+    public static String observableStringToString(ObservableString string) {
+        return string.get();
+    }
+
+    //@BindingAdapter({"android:text"})
     public static void bindEditText(EditText view, final ObservableString bindableString) {
         if (view.getTag(R.id.textBound) == null) {
             view.setTag(R.id.textBound, true);

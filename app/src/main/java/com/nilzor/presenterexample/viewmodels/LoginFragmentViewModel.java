@@ -1,11 +1,11 @@
 package com.nilzor.presenterexample.viewmodels;
 
 import android.content.res.Resources;
-import android.database.Observable;
 import android.databinding.ObservableBoolean;
 import android.databinding.ObservableField;
 import android.databinding.ObservableInt;
 import android.os.AsyncTask;
+import android.text.Editable;
 import android.view.View;
 
 import com.nilzor.presenterexample.R;
@@ -22,6 +22,7 @@ public class LoginFragmentViewModel {
     public ObservableString loginOrCreateButtonText = new ObservableString();
     public ObservableString username = new ObservableString("");
     public ObservableString password = new ObservableString("");
+    public ObservableString email = new ObservableString("");
     public ObservableField<String> passwordError = new ObservableField<>(); // Todo: Fix ObservableString to work here
     private boolean mIsLoaded;
     private AppNavigator mAppNavigator;
@@ -66,9 +67,21 @@ public class LoginFragmentViewModel {
         }
     }
 
-    public void updateDependentViews(View view, boolean newState) {
+    public void onExistingOrNewUserChanged(View view, boolean newState) {
         isExistingUserChecked.set(newState);
         updateDependentViews();
+    }
+
+    public void onPasswordChanged(Editable e) {
+        password.setSilently(e.toString());
+    }
+
+    public void onUsernameChanged(Editable e) {
+        username.setSilently(e.toString());
+    }
+
+    public void onEmailChanged(Editable e) {
+        email.setSilently(e.toString());
     }
 
     public void loadAsync() {
