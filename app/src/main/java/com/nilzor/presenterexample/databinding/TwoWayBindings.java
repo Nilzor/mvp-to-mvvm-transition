@@ -1,4 +1,4 @@
-package com.nilzor.presenterexample.helpers;
+package com.nilzor.presenterexample.databinding;
 
 import android.databinding.BindingAdapter;
 import android.text.Editable;
@@ -6,9 +6,9 @@ import android.text.TextWatcher;
 import android.widget.EditText;
 
 import com.nilzor.presenterexample.R;
-import com.nilzor.presenterexample.databinding.ObservableString;
 
-public class EditTextHelper {
+@SuppressWarnings("unused")
+public class TwoWayBindings {
     @BindingAdapter({"android:text"})
     public static void bindEditText(EditText view, final ObservableString bindableString) {
         if (view.getTag(R.id.textBound) == null) {
