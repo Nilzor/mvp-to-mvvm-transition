@@ -21,18 +21,10 @@ import java.io.Serializable;
  * parcelled / serialized. Unless you add custom callbacks, this will not be an issue because
  * data binding framework always re-registers callbacks when the view is bound.
  */
-public class ObservableString extends ObservableField<String> implements Serializable {
+public class ObservableString extends BaseObservable implements Serializable {
     static final long serialVersionUID = 1L;
     private String mValue;
 
-    /**
-     * Wraps the given object and creates an observable object
-     *
-     * @param value The value to be wrapped as an observable.
-     */
-    public ObservableString(String value) {
-        super(value);
-    }
 
     /**
      * Creates an empty observable object
@@ -40,11 +32,25 @@ public class ObservableString extends ObservableField<String> implements Seriali
     public ObservableString() {
     }
 
+    /**
+     * Wraps the given object and creates an observable object
+     *
+     * @param value The value to be wrapped as an observable.
+     */
+    public ObservableString(String value) {
+        mValue = value;
+    }
+
+    /**
+     * @return the stored value.
+     */
+    public String get() {
+        return mValue;
+    }
 
     /**
      * Set the stored value.
      */
-    @Override
     public void set(String value) {
         if (value == null && mValue == null) return;
         if ((value == null && mValue != null) || !value.equals(mValue)) {

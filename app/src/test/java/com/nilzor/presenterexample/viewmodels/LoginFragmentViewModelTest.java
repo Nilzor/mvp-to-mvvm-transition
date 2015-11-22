@@ -49,7 +49,7 @@ public class LoginFragmentViewModelTest {
         model.isExistingUserChecked.set(true);
         model.username.set("someGuy2006");
         model.password.set("wrong");
-        model.logInClicked();
+        model.logInClicked(null);
         verify(toast).showShortToast(mStringCaptor.capture());
         assertEquals("Invalid username or password", mStringCaptor.getValue());
     }
