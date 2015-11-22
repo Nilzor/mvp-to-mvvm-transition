@@ -5,11 +5,11 @@ import android.databinding.ObservableBoolean;
 import android.databinding.ObservableField;
 import android.databinding.ObservableInt;
 import android.os.AsyncTask;
-import android.text.Editable;
 import android.view.View;
 
 import com.nilzor.presenterexample.R;
-import com.nilzor.presenterexample.databinding.ObservableString;
+import com.nilzor.presenterexample.databinding.TwoWayBoundBoolean;
+import com.nilzor.presenterexample.databinding.TwoWayBoundString;
 import com.nilzor.presenterexample.helpers.AppNavigator;
 import com.nilzor.presenterexample.helpers.ToastPresenter;
 
@@ -17,13 +17,13 @@ import java.util.Random;
 
 public class LoginFragmentViewModel {
     public ObservableField<String> numberOfUsersLoggedIn = new ObservableField<>();
-    public ObservableBoolean isExistingUserChecked = new ObservableBoolean();
+    public TwoWayBoundBoolean isExistingUserChecked = new TwoWayBoundBoolean();
     public ObservableInt emailBlockVisibility = new ObservableInt();
-    public ObservableString loginOrCreateButtonText = new ObservableString();
-    public ObservableString username = new ObservableString("");
-    public ObservableString password = new ObservableString("");
-    public ObservableString email = new ObservableString("");
-    public ObservableField<String> passwordError = new ObservableField<>(); // Todo: Fix ObservableString to work here
+    public TwoWayBoundString loginOrCreateButtonText = new TwoWayBoundString();
+    public TwoWayBoundString username = new TwoWayBoundString("");
+    public TwoWayBoundString password = new TwoWayBoundString("");
+    public TwoWayBoundString email = new TwoWayBoundString("");
+    public ObservableField<String> passwordError = new ObservableField<>(); // Todo: Fix TwoWayBoundString to work here
     private boolean mIsLoaded;
     private AppNavigator mAppNavigator;
     private ToastPresenter mToastPresenter;
@@ -65,23 +65,6 @@ public class LoginFragmentViewModel {
             emailBlockVisibility.set(View.VISIBLE);
             loginOrCreateButtonText.set(mResources.getString(R.string.create_user));
         }
-    }
-
-    public void onExistingOrNewUserChanged(View view, boolean newState) {
-        isExistingUserChecked.set(newState);
-        updateDependentViews();
-    }
-
-    public void onPasswordChanged(Editable e) {
-        password.setSilently(e.toString());
-    }
-
-    public void onUsernameChanged(Editable e) {
-        username.setSilently(e.toString());
-    }
-
-    public void onEmailChanged(Editable e) {
-        email.setSilently(e.toString());
     }
 
     public void loadAsync() {
