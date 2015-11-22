@@ -1,6 +1,7 @@
 package com.nilzor.presenterexample.databinding;
 
 import android.databinding.BaseObservable;
+import android.databinding.BindingConversion;
 import android.databinding.ObservableBoolean;
 import android.databinding.ObservableField;
 
@@ -62,5 +63,11 @@ public class ObservableString extends BaseObservable implements Serializable {
     /** Sets the stored value without notifying of change */
     public void setSilently(String value) {
         mValue = value;
+    }
+
+
+    @BindingConversion
+    public static String observableStringToString(ObservableString string) {
+        return string.get();
     }
 }
