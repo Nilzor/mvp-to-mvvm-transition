@@ -1,6 +1,8 @@
 package com.nilzor.presenterexample.ui;
 
-import android.app.Fragment;
+import android.arch.lifecycle.LifecycleFragment;
+import android.arch.lifecycle.LifecycleOwner;
+import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,7 +14,7 @@ import com.nilzor.presenterexample.helpers.AppNavigator;
 import com.nilzor.presenterexample.helpers.ToastPresenter;
 import com.nilzor.presenterexample.viewmodels.LoginFragmentViewModel;
 
-public class LoginFragment extends Fragment {
+public class LoginFragment extends LifecycleFragment {
     private FragmentLoginBinding mBinding;
     private LoginFragmentViewModel mViewModel;
 
@@ -25,9 +27,13 @@ public class LoginFragment extends Fragment {
         mBinding = FragmentLoginBinding.bind(view);
         ToastPresenter toastPresenter = new ToastPresenter(getActivity().getApplicationContext());
         AppNavigator navigator = new AppNavigator(getActivity());
-        mViewModel = new LoginFragmentViewModel(navigator, toastPresenter, getResources());
+
+        LoginFragmentViewModel.Factory factory = new LoginFragmentViewModel.Factory(navigator, toastPresenter, getResources());
+        mViewModel = ViewModelProviders.of(this, factory).get(LoginFragmentViewModel.class);
         mBinding.setData(mViewModel);
         return view;
+
+
     }
 
     @Override
@@ -36,7 +42,7 @@ public class LoginFragment extends Fragment {
     }
 
     private void ensureModelDataIsLodaded() {
-        if (!mViewModel.isLoaded()) {
+        if (!mViewModel.isLoadStarted()) {
             mViewModel.loadAsync();
         }
     }
