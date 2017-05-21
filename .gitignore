@@ -7,3 +7,4 @@
 *.iml
 *.keystore
 captures/
+.idea/markdown-navigator

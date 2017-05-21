@@ -14,7 +14,6 @@
       <option name="m_maxLength" value="32" />
     </inspection_tool>
     <inspection_tool class="Convert2Diamond" enabled="true" level="WEAK WARNING" enabled_by_default="true" />
-    <inspection_tool class="GroovyAssignabilityCheck" enabled="false" level="WARNING" enabled_by_default="false" />
     <inspection_tool class="InstanceVariableNamingConvention" enabled="false" level="WARNING" enabled_by_default="false">
       <option name="m_regex" value="m[A-Z][a-z][A-Za-z\d]*" />
       <option name="m_minLength" value="3" />
