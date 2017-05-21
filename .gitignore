@@ -8,3 +8,4 @@
 *.keystore
 captures/
 .idea/markdown-navigator
+.idea/shelf
