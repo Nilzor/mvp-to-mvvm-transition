@@ -1,7 +1,6 @@
 package com.nilzor.presenterexample.viewmodels;
 
 import android.content.res.Resources;
-import android.databinding.ObservableBoolean;
 import android.databinding.ObservableField;
 import android.databinding.ObservableInt;
 import android.os.AsyncTask;
@@ -24,7 +23,7 @@ public class LoginFragmentViewModel {
     public TwoWayBoundString password = new TwoWayBoundString("");
     public TwoWayBoundString email = new TwoWayBoundString("");
     public ObservableField<String> passwordError = new ObservableField<>(); // Todo: Fix TwoWayBoundString to work here
-    private boolean mIsLoaded;
+    private boolean mIsLoadStarted;
     private AppNavigator mAppNavigator;
     private ToastPresenter mToastPresenter;
     private Resources mResources;
@@ -37,8 +36,8 @@ public class LoginFragmentViewModel {
         updateDependentViews();
         hookUpDependencies();
     }
-    public boolean isLoaded() {
-        return mIsLoaded;
+    public boolean isLoadStarted() {
+        return mIsLoadStarted;
     }
 
     private void setInitialState() {
@@ -68,13 +67,13 @@ public class LoginFragmentViewModel {
     }
 
     public void loadAsync() {
+        mIsLoadStarted = true;
         new AsyncTask<Void, Void, Void>() {
             @Override
             protected Void doInBackground(Void... params) {
                 // Simulating some asynchronous task fetching data from a remote server
                 try {Thread.sleep(2000);} catch (Exception ex) {};
                 numberOfUsersLoggedIn.set("" + new Random().nextInt(1000));
-                mIsLoaded = true;
                 return null;
             }
         }.execute((Void) null);
