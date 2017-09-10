@@ -126,7 +126,8 @@
                 android:inputType="textEmailAddress"
                 android:ems="10"
                 android:id="@+id/email"
-                android:afterTextChanged="@{data.onEmailChanged}"/>
+                android:afterTextChanged="@{data.onEmailChanged}"
+                android:onTextChanged="@{data.onEmailTextChanged}"/>
         </LinearLayout>
 
         <Button

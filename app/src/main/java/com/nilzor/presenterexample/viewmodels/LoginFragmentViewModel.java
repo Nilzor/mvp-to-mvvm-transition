@@ -6,6 +6,7 @@ import android.databinding.ObservableField;
 import android.databinding.ObservableInt;
 import android.os.AsyncTask;
 import android.text.Editable;
+import android.util.Log;
 import android.view.View;
 
 import com.nilzor.presenterexample.R;
@@ -82,6 +83,10 @@ public class LoginFragmentViewModel {
 
     public void onEmailChanged(Editable e) {
         email.setSilently(e.toString());
+    }
+
+    public void onEmailTextChanged(CharSequence s, int start, int before, int count) {
+        Log.d("Test", "Email text changed. Now: " + s);
     }
 
     public void loadAsync() {
